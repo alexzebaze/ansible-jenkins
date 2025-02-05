@@ -1,8 +1,13 @@
 
-- name: install nginx
+- name: Install and configure Nginx
   hosts: all
-  become: yes
-  roles:
-    - nginx
+  become: yes  # Exige sudo
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
 
-
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
